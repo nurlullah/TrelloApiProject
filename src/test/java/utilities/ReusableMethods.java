@@ -266,59 +266,5 @@ public class ReusableMethods {
         return date != null;
     }
 
-    public static Response createBoard(String name) {
-        return RestAssured
-                .given()
-                .queryParam("key", KEY)
-                .queryParam("token", TOKEN)
-                .queryParam("name", name)
-                .contentType(ContentType.JSON)
-                .post("/boards");
-    }
-
-    public static Response createCard(String boardId, String name) {
-        return given()
-                .queryParam("key", KEY)
-                .queryParam("token", TOKEN)
-                .queryParam("idList", boardId)
-                .queryParam("name", name)
-                .contentType(ContentType.JSON)
-                .post("/cards");
-    }
-
-    public static void updateCard(String cardId, String name) {
-        given()
-                .queryParam("key", KEY)
-                .queryParam("token", TOKEN)
-                .queryParam("name", name)
-                .contentType(ContentType.JSON)
-                .put("/cards/{id}", cardId)
-                .then()
-                .statusCode(200)
-                .body(".name", equalTo(name));
-    }
-    public static void deleteCard(String cardId) {
-        given()
-                .queryParam("key", KEY)
-                .queryParam("token", TOKEN)
-                .delete("/cards/{id}", cardId)
-                .then()
-                .statusCode(200);
-    }
-
-    public static void deleteBoard(String boardId) {
-        given()
-                .queryParam("key", KEY)
-                .queryParam("token", TOKEN)
-                .delete("/boards/{id}", boardId)
-                .then()
-                .statusCode(200);
-    }
-
-
-
-
-
-
 
 }
